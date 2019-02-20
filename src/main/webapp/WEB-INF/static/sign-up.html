@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sign Up</h3>
+                </div>
+                <div class="panel-body">
+                    <form name="signUpForm">
+
+                        <div class="form-group">
+                            <input type="text" name="userName" ng-model="userName" required ng-pattern="/^[a-zA-Z0-9]+$/" ng-minlength="5" ng-maxlength="20"
+                                   class="form-control input-sm" placeholder="User Name">
+                            <div ng-show="signUpForm.userName.$invalid">
+                                Must contain between 5 and 20 alpha numeric digits
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="password" name="password" ng-model="password" required class="form-control input-sm" placeholder="Password"
+                                           ng-minlength="8" ng-maxlength="20" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/">
+                                    <div ng-show="signUpForm.password.$invalid">
+                                        Must contain between 8 and 20 digits and contain at lest 1 number, 1 uppercase and 1 lowercase character
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="password" name="passwordConfirmation" ng-model="passwordConfirmation" ng-pattern="password"
+                                           required class="form-control input-sm" placeholder="Confirm Password">
+                                    <div ng-show="passwordConfirmation == undefined || password != passwordConfirmation">
+                                        Must match the previous password
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" value="Sign Up" class="btn btn-info btn-block" ng-click="createUser()" ng-disabled="signUpForm.$invalid">
+
+                        <div ng-show="signUpForm.$submitted" ng-cloak>
+                            <h3>{{message}}</h3>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
